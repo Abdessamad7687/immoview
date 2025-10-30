@@ -13,7 +13,7 @@ export default function HomePage() {
     <div className="relative min-h-screen">
       <Navbar />
 
-      <div className="flex">
+      <div className="flex pt-16 lg:pt-16">
         <Sidebar selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
 
         <main className="flex-1">

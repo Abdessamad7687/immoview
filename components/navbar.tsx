@@ -15,7 +15,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+      <nav className="fixed top-0 left-0 right-0 z-[100] border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 pointer-events-auto">
         <div className="flex h-14 items-center justify-between gap-2 px-3 lg:px-6">
           {/* Logo - Compact on mobile */}
           <div className="flex items-center gap-2">

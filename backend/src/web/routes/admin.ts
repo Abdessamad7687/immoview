@@ -39,17 +39,18 @@ adminRouter.get("/videos", requireAuth(["ADMIN"]), async (_req, res) => {
 
 adminRouter.post("/videos", requireAuth(["ADMIN"]), async (req: any, res) => {
   const adminId = req.principal.sub as string;
-  const { title, description, storageUrl, thumbnailUrl, status } = req.body || {};
-  if (!title || !storageUrl) return res.status(400).json({ error: "Missing title or storageUrl" });
-  const video = await prisma.video.create({ data: { title, description, storageUrl, thumbnailUrl, status, uploadedByAdminId: adminId } });
+  const { title, titleFr, titleAr, description, descriptionFr, descriptionAr, storageUrl, thumbnailUrl, status } = req.body || {};
+  const mainTitle = title || titleFr || titleAr;
+  if (!mainTitle || !storageUrl) return res.status(400).json({ error: "Missing title or storageUrl" });
+  const video = await prisma.video.create({ data: { title: mainTitle, titleFr, titleAr, description, descriptionFr, descriptionAr, storageUrl, thumbnailUrl, status, uploadedByAdminId: adminId } });
   await prisma.videoMetrics.create({ data: { videoId: video.id } });
   res.status(201).json(video);
 });
 
 adminRouter.patch("/videos/:id", requireAuth(["ADMIN"]), async (req, res) => {
   const { id } = req.params;
-  const { title, description, thumbnailUrl, status, publishedAt } = req.body || {};
-  const video = await prisma.video.update({ where: { id }, data: { title, description, thumbnailUrl, status, publishedAt } });
+  const { title, titleFr, titleAr, description, descriptionFr, descriptionAr, thumbnailUrl, status, publishedAt } = req.body || {};
+  const video = await prisma.video.update({ where: { id }, data: { title, titleFr, titleAr, description, descriptionFr, descriptionAr, thumbnailUrl, status, publishedAt } });
   res.json(video);
 });
 

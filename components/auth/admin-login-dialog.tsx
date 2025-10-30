@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { API_BASE_URL, setAuth } from "../../lib/auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 export function AdminLoginDialog({ label }: { label: string }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +28,7 @@ export function AdminLoginDialog({ label }: { label: string }) {
       if (!res.ok) throw new Error(data?.error || "Login failed");
       setAuth(data.accessToken, "ADMIN");
       setOpen(false);
+      router.push("/admin");
     } catch (err: any) {
       setError(err.message || "Login failed");
     } finally {

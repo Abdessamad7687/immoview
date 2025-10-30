@@ -83,7 +83,11 @@ model Admin {
 model Video {
   id                 String       @id @default(uuid()) @db.Uuid
   title              String
+  titleFr            String?
+  titleAr            String?
   description        String?
+  descriptionFr      String?
+  descriptionAr      String?
   storageUrl         String
   thumbnailUrl       String?
   status             VideoStatus  @default(DRAFT)

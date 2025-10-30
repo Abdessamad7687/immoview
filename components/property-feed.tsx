@@ -29,9 +29,9 @@ export function PropertyFeed({ selectedCategory }: PropertyFeedProps) {
 
   if (loading) {
     return (
-      <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-4rem)] lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-4 lg:p-4 lg:h-auto lg:snap-none">
+      <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-4rem-3.5rem)] p-2 pb-20 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-4 lg:p-4 lg:h-auto lg:snap-none">
         {[1, 2, 3].map((i) => (
-          <Skeleton key={i} className="h-screen w-full lg:h-[600px] lg:rounded-2xl snap-start" />
+          <Skeleton key={i} className="h-[calc(100vh-7.5rem)] w-full snap-start mb-3 lg:mb-0 lg:h-[600px] lg:rounded-2xl" />
         ))}
       </div>
     )
@@ -46,7 +46,7 @@ export function PropertyFeed({ selectedCategory }: PropertyFeedProps) {
   }
 
   return (
-    <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-4rem)] lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-4 lg:p-4 lg:h-auto lg:snap-none">
+    <div className="snap-y snap-mandatory overflow-y-auto h-[calc(100vh-4rem-3.5rem)] p-2 pb-20 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-4 lg:p-4 lg:h-auto lg:snap-none pointer-events-auto">
       {properties.map((property) => (
         <PropertyCard key={property.id} property={property} />
       ))}
